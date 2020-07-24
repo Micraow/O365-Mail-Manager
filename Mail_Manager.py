@@ -1,3 +1,4 @@
+# coding=utf-8
 from O365 import Account
 import os
 
@@ -24,7 +25,7 @@ class mailbox_actions:
             # 请求登录
             self.account.authenticate(scopes=self.scopes)
 
-    def Read_email(self):
+    def read_email(self):
         """遍历邮件
         limit 表示加载多少个，微软官方一次API调用只返回999个，
         而O365模块默认25个，只有limit>25时utils分页功能才生效
@@ -33,18 +34,27 @@ class mailbox_actions:
         但是分为10次加载。"""
 
         mailbox = self.account.mailbox()
+        print('''
+        你要进入哪个文件夹？
+        1.收件箱
+        2.已发送
+        3.垃圾邮件
+        4.已删除\n
+        ''')
+        readbox = input('请输入对应数字')
 
-        inbox = mailbox.inbox_folder()
-        for messages in inbox.get_messages(limit=200, batch=100):  # 下面的都是utils分页的
+        if readbox == '1':
+            readbox = mailbox.inbox_folder()
+        elif readbox == '2':
+            readbox = mailbox.sent_folder()
+        elif readbox == '3':
+            readbox = mailbox.junk_folder()
+        else:
+            readbox = mailbox.deleted_folder()
+
+        for messages in readbox.get_messages(limit=2000, batch=100):  # 下面的都是utils分页的
             print(messages)
-        for messages in mailbox.junk_folder().get_messages(limit=200, batch=100):
-            print(messages)
-        for messages in mailbox.deleted_folder().get_messages(limit=200, batch=100):
-            print(messages)
-        for messages in mailbox.drafts_folder().get_messages(limit=2000):
-            print(messages)
-        for messages in mailbox.sent_folder().get_messages(limit=2000, batch=10):
-            print(messages)
+
         os.system("pause")
 
     # 准备加入选择进入哪个文件夹
@@ -56,7 +66,7 @@ class mailbox_actions:
         if self.choice == 'E':
             self.choice = input('看邮件还是写邮件？(R/W)')
             if self.choice == 'R':
-                mailbox_actions().Read_email()
+                mailbox_actions().read_email()
             elif self.choice == 'W':
                 print('开发中，请稍后')
             else:
