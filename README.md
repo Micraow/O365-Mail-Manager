@@ -8,9 +8,10 @@
 感谢csdn和电报中众多朋友的帮助，现在我决定继续维护这个项目。
 程序很简单，通过我的应用ID和机密连接到你的账号，并操作，运用了一个模板 [O365](https://github.com/O365/python-o365 "O365").
 如果你要使用，请：
+
 1. `pip install O365`
 
-2.准备一个微软账号
+2.准备一个微软账号 [注册](https://account.microsoft.com/account?lang=zh-cn) ，事实上我更推荐含Office 365(现更名为Microsoft 365)的E5开发者订阅（我用的就是这个比较靠谱，而且可以支持所有的API），注册方法请自行百度。
 
 没了，就这么简单！
 
