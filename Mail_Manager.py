@@ -40,7 +40,7 @@ class mailbox_actions:
         2.已发送
         3.垃圾邮件
         4.已删除\n
-        ''')
+        ''') # 选择进入哪个文件夹
         readbox = input('请输入对应数字')
 
         if readbox == '1':
@@ -57,25 +57,29 @@ class mailbox_actions:
 
         os.system("pause")
 
-    # 准备加入选择进入哪个文件夹
 
-    def start(self):
-        """应用入口"""
+class Start:
+    """这里是应用入口"""
+    def __init__(self):
+        pass
+
+    def mail_or_calendar(self):
         self.choice = input('进入邮箱还是日历？(E/C)')
-
         if self.choice == 'E':
             self.choice = input('看邮件还是写邮件？(R/W)')
             if self.choice == 'R':
                 mailbox_actions().read_email()
             elif self.choice == 'W':
                 print('开发中，请稍后')
+                os.system("pause")
             else:
-                mailbox_actions().start()
+                Start().mail_or_calendar()
         elif self.choice == 'C':
             print('开发中，敬请期待')
+            os.system("pause")
         else:
-            mailbox_actions().start()
+            Start().mail_or_calendar()
 
 
-mailbox_actions().check_if_authenticated()
-mailbox_actions().start()
+start = Start()
+start.mail_or_calendar()
