@@ -1,4 +1,7 @@
 # O365-Mail-Manager
+
+！本项目已转至 [O365-Client](https://github.com/Dreams-builder/O365-Client)
+
 用Python编写的代码示例，与O365连接并查阅邮件，查看日历等。
 
 **欢迎Pull requests和Issues!**
